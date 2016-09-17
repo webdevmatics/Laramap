@@ -17,7 +17,8 @@ $(document).ready(function() {
         var lngval = position.coords.longitude;
         myLatLng = new google.maps.LatLng(latval, lngval);
         createMap(myLatLng);
-        nearbySearch(myLatLng, "school");
+        // nearbySearch(myLatLng, "school");
+        searchGirls(latval,lngval);
     }
 
     function fail() {
@@ -43,27 +44,44 @@ $(document).ready(function() {
             title: name
         });
     }
-    //Nearby search
-    function nearbySearch(myLatLng, type) {
-        var request = {
-            location: myLatLng,
-            radius: '2500',
-            types: [type]
-        };
-        service = new google.maps.places.PlacesService(map);
-        service.nearbySearch(request, callback);
+    // //Nearby search
+    // function nearbySearch(myLatLng, type) {
+    //     var request = {
+    //         location: myLatLng,
+    //         radius: '2500',
+    //         types: [type]
+    //     };
+    //     service = new google.maps.places.PlacesService(map);
+    //     service.nearbySearch(request, callback);
 
-        function callback(results, status) {
-            if (status == google.maps.places.PlacesServiceStatus.OK) {
-                for (var i = 0; i < results.length; i++) {
-                    var place = results[i];
-                    console.log(place);
-                    latlng = place.geometry.location;
-                    icn = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-                    name = place.name;
-                    createMarker(latlng, icn, name);
-                }
-            }
-        }
+    //     function callback(results, status) {
+    //         if (status == google.maps.places.PlacesServiceStatus.OK) {
+    //             for (var i = 0; i < results.length; i++) {
+    //                 var place = results[i];
+    //                 console.log(place);
+    //                 latlng = place.geometry.location;
+    //                 icn = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+    //                 name = place.name;
+    //                 createMarker(latlng, icn, name);
+    //             }
+    //         }
+    //     }
+    // }
+    function searchGirls(lat,lng){
+        $.post('http://localhost/api/searchGirls',{lat:lat,lng:lng},function(match){
+            // console.log(match);
+            $.each(match,function(i,val){
+                var glatval=val.lat;
+                var glngval=val.lng;
+                var gname=val.name;
+                var GLatLng = new google.maps.LatLng(glatval, glngval);
+                var gicn= 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+                createMarker(GLatLng,gicn,gname);
+            });
+
+              // $.each(match, function(i, val) {
+              //   console.log(val.name);
+              // });
+        });
     }
 });

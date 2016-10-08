@@ -25,4 +25,17 @@ class SearchGirlsController extends Controller
 
         return view('ajxresult',compact('matchedCities'));
     }
+
+    public function locationCoords(Request $request)
+    {
+        $cityval=$request->cityval;
+        $distval=$request->distval;
+        $col=Location::where('district',$distval)->where('city',$cityval)->first();
+
+        $lat=$col->lat;
+        $lng=$col->lng;
+
+
+        return [$lat,$lng];
+    }
 }

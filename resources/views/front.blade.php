@@ -11,7 +11,7 @@
         </div>
         <br>
 
-        {!! Form::open([]) !!}
+        {!! Form::open(['url'=>'/getLocationCoords','id'=>'searchGirls']) !!}
 
         {!! Form::label('district','District') !!}
 
@@ -22,6 +22,8 @@
         <div id="city">
 
         </div>
+
+        {!! Form::submit('Find',['class'=>'btn btn-success']) !!}
 
         {!! Form::close() !!}
 

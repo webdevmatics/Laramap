@@ -19,3 +19,4 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/searchGirls','SearchGirlsController@searchGirls');
 Route::post('/searchCity','SearchGirlsController@searchCity');
+Route::post('/getLocationCoords','SearchGirlsController@locationCoords');

@@ -27,6 +27,12 @@
 
         {!! Form::close() !!}
 
+        <br>
+        <h4>Name of Girls</h4>
+        <hr>
+          <ul id="girlsResult">
+
+          </ul>
     </div>
 
 

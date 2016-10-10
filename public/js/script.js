@@ -48,6 +48,8 @@ $(document).ready(function() {
     function searchGirls(lat,lng){
         $.post('http://localhost/api/searchGirls',{lat:lat,lng:lng},function(match){
             // console.log(match);
+            $('#girlsResult').html('');
+
             $.each(match,function(i,val){
                 var glatval=val.lat;
                 var glngval=val.lng;
@@ -55,6 +57,8 @@ $(document).ready(function() {
                 var GLatLng = new google.maps.LatLng(glatval, glngval);
                 var gicn= 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
                 createMarker(GLatLng,gicn,gname);
+                var html='<h5><li>'+gname+'</li></h5>';
+                $('#girlsResult').append(html);
             });
 
               // $.each(match, function(i, val) {

@@ -50,9 +50,10 @@
       };
     },
     processResults:function(data){
+        console.log(data);
         return{
             results:$.map(data.items,function(val,i){
-                return { id:val, text:val };
+                return { id:i, text:val };
             })
         }
     }

@@ -12,7 +12,7 @@ $(document).ready(function() {
     }
 
     function success(position) {
-        console.log(position);
+        // console.log(position);
         var latval = position.coords.latitude;
         var lngval = position.coords.longitude;
         myLatLng = new google.maps.LatLng(latval, lngval);

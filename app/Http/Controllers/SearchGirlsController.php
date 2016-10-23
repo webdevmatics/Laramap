@@ -22,7 +22,7 @@ class SearchGirlsController extends Controller
     {
         $distval=$request->q;
         // return $distval;
-        $matchedCities=Location::where('city','like',"%$distval%")->pluck('city');
+        $matchedCities=Location::where('city','like',"%$distval%")->pluck('city','city');
         // return $matchedCities;
         return response()->json(['items'=>$matchedCities], 200); 
         // return view('ajxresult',compact('matchedCities'));

@@ -10,8 +10,9 @@
     <br>
         {!! Form::open(['url'=>'/getLocationCoords','id'=>'searchGirls']) !!}
 
-        {!! Form::label('Location','District') !!}
-			{!!Form::select('district', $districts,null,['id'=>'district']) !!}
+        {!! Form::label('district','Location') !!}
+        <select style="width: 150px" name="district" id="district"></select>
+			{{-- {!!Form::select('district', $districts,null,['id'=>'district']) !!} --}}
         
         <br> <br>
             {!! Form::submit('Find',['class'=>'btn btn-success btn-sm ']) !!}

@@ -20,10 +20,10 @@ class SearchGirlsController extends Controller
 
     public function searchCity(Request $request)
     {
-        $distval=$request->distval;
-        $matchedCities=Location::where('district',$distval)->pluck('city','city');
-
-        return view('ajxresult',compact('matchedCities'));
+        $locationVal=$request->locationVal;
+        $matchedCities=Location::where('city',$locationVal)->pluck('city','city');
+        return response()->json(['items'=>$matchedCities]);
+        // return view('ajxresult',compact('matchedCities'));
     }
 
     public function locationCoords(Request $request)

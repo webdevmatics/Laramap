@@ -15,8 +15,8 @@
 
         {!! Form::label('district','District') !!}
 
-         {!!Form::select('district', $districts,null,['id'=>'district']) !!}
-
+         {{-- {!!Form::select('district', $districts,null,['id'=>'district']) !!} --}}
+        <select style="width: 150px" name="location" id="locationSelect"></select>
 
 
         <div id="city">
@@ -35,5 +35,39 @@
           </ul>
     </div>
 
+
+@endsection
+
+@section('js')
+
+<script>
+    $(document).ready(function(){
+        $('#locationSelect').select2({
+            placeholder:"Select and Search",
+            ajax:{
+                url:"/api/searchCity",
+                type:"POST",
+                dataType:"json",
+                delay:250,
+                data:function(params){
+                    return{
+                    locationVal:params.term,
+                };
+                },
+
+                processResults:function(data){
+                    return{
+                        results:$.map(data.items,function(val,i){
+                            return {id:id, text:val};
+                        })
+                    }
+                }
+
+            }
+
+
+        });
+    });
+</script>
 
 @endsection

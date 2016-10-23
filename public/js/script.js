@@ -69,9 +69,9 @@ $(document).ready(function() {
 
     $('#searchGirls').submit(function(e){
        e.preventDefault();
-        var distval=$('#district').val();
-        var cityval=$('#citylocation').val();
-        $.post('http://localhost/api/getLocationCoords',{distval:distval,cityval:cityval},function(match){
+        var val=$('#district').val();
+        console.log(val);
+        $.post('http://localhost/api/getLocationCoords',{val:val},function(match){
 
             var myLatLng = new google.maps.LatLng(match[0],match[1]);
             createMap(myLatLng);

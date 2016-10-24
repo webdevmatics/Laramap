@@ -2,7 +2,7 @@ var map;
 var myLatLng;
 $(document).ready(function() {
     geoLocationInit();
-
+});
     function geoLocationInit() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(success, fail);
@@ -12,7 +12,7 @@ $(document).ready(function() {
     }
 
     function success(position) {
-        // console.log(position);
+        console.log(position);
         var latval = position.coords.latitude;
         var lngval = position.coords.longitude;
         myLatLng = new google.maps.LatLng(latval, lngval);
@@ -69,8 +69,7 @@ $(document).ready(function() {
 
     $('#searchGirls').submit(function(e){
        e.preventDefault();
-        var val=$('#district').val();
-        console.log(val);
+        var val=$('#locationSelect').val();
         $.post('http://localhost/api/getLocationCoords',{val:val},function(match){
 
             var myLatLng = new google.maps.LatLng(match[0],match[1]);
@@ -80,4 +79,3 @@ $(document).ready(function() {
     });
 
 
-});

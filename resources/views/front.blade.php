@@ -17,7 +17,6 @@
         </select>
         <div id="city">
         </div>
-        {!! Form::submit('Find',['class'=>'btn btn-success']) !!}
 
         {!! Form::close() !!}
         <br>
